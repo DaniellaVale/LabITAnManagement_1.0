@@ -34,7 +34,7 @@ WORKSHEET_NAME = "Sheet1"  # Ou o nome da aba que você usa
 
 # Credenciais JSON diretamente no código (substitua pelo seu JSON real)
 # Substitua pelo caminho do seu arquivo JSON (ex.: "credenciais.json")
-CAMINHO_CREDENCIAIS = "C:/Users/danie/Downloads/api-reagentes-190d7c597b5c.json"  # Exemplo: "credenciais.json" (se estiver na mesma pasta)
+CAMINHO_CREDENCIAIS = "api-reagentes-190d7c597b5c.json"  # Exemplo: "credenciais.json" (se estiver na mesma pasta)
 
 '''página de login'''
 # Configuração inicial de logging
