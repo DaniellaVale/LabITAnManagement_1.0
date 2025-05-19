@@ -1,0 +1,4 @@
+flet
+gspread
+oauth2client
+pandas

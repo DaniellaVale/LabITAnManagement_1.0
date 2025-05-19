@@ -1,0 +1,10 @@
+
+services:
+  - type: web
+    name: labitan-web
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python applabitanfinal.py
+    envVars:
+      - key: GOOGLE_CREDENTIALS_JSON
+        sync: false
