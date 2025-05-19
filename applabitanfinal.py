@@ -154,7 +154,7 @@ def login(page: ft.Page):
     page.window_resizable = True
     page.window_maximized = True
     page.scroll = ft.ScrollMode.AUTO
-    page.bgcolor = ft.colors.WHITE
+    page.bgcolor = ft.Colors.WHITE
     
     # Interface
     email_input = ft.TextField(
@@ -171,7 +171,7 @@ def login(page: ft.Page):
         max_length=11
     )
     
-    mensagem = ft.Text("", color=ft.colors.RED)
+    mensagem = ft.Text("", color=ft.Colors.RED)
     
     def on_login(e):
         email = email_input.value
@@ -193,7 +193,7 @@ def login(page: ft.Page):
                 }
                 
                 mensagem.value = "✅ Login bem-sucedido!"
-                mensagem.color = ft.colors.GREEN
+                mensagem.color = ft.Colors.GREEN
                 page.update()
                 
                 # Pequeno delay para mostrar a mensagem
@@ -203,7 +203,7 @@ def login(page: ft.Page):
                 ir_para_pagina(page, pagina_inicial)
             else:
                 mensagem.value = "❌ Credenciais inválidas"
-                mensagem.color = ft.colors.RED
+                mensagem.color = ft.Colors.RED
                 
         mensagem.update()
     
@@ -215,7 +215,7 @@ def login(page: ft.Page):
             ft.ElevatedButton(
                 "Entrar", 
                 on_click=on_login,
-                icon=ft.icons.LOCK_OPEN
+                icon=ft.Icons.LOCK_OPEN
             ),
             mensagem
         ], spacing=20)
@@ -223,7 +223,7 @@ def login(page: ft.Page):
 
 '''Página principal'''
 def pagina_inicial(page):
-    page.bgcolor = ft.colors.WHITE
+    page.bgcolor = ft.Colors.WHITE
     page.scroll = "adaptive"
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
@@ -232,7 +232,7 @@ def pagina_inicial(page):
 
     botao_alunos = ft.ElevatedButton(
         text="Alunos",
-        icon=ft.icons.GROUP,
+        icon=ft.Icons.GROUP,
         width=250,
         on_click=lambda e: ir_para_pagina(page, alunos),
         style=ft.ButtonStyle(
@@ -241,7 +241,7 @@ def pagina_inicial(page):
     
     botao_professores = ft.ElevatedButton(
         text="professores",
-        icon=ft.icons.SCHOOL,
+        icon=ft.Icons.SCHOOL,
         width=250,
         on_click=lambda e: ir_para_pagina(page, professores),
         style=ft.ButtonStyle(
@@ -250,7 +250,7 @@ def pagina_inicial(page):
     
     botao_almoxarifado = ft.ElevatedButton(
         text="Almoxarifado",
-        icon=ft.icons.CHECKLIST,
+        icon=ft.Icons.CHECKLIST,
         width=250,
         on_click=lambda e: ir_para_pagina(page, almoxarifado),
         style=ft.ButtonStyle(
@@ -259,7 +259,7 @@ def pagina_inicial(page):
     
     botao_material = ft.ElevatedButton(
         text="Material",
-        icon=ft.icons.SCIENCE,
+        icon=ft.Icons.SCIENCE,
         on_click=lambda e: ir_para_pagina(page, material),
         width=250,
         style=ft.ButtonStyle(
@@ -268,7 +268,7 @@ def pagina_inicial(page):
     
     botaosair = ft.ElevatedButton(
         text="Logout", 
-        icon=ft.icons.EXIT_TO_APP, 
+        icon=ft.Icons.EXIT_TO_APP, 
         on_click=lambda e: ir_para_pagina(page, login))
     
     # Mostrar informações do usuário logado
@@ -276,7 +276,7 @@ def pagina_inicial(page):
         ft.Text(f"Usuário: {user_permissions['email']}"),
         ft.Text(
             "Permissão de edição: SIM" if user_permissions['can_edit_controlled'] else "Permissão de edição: NÃO",
-            color=ft.colors.GREEN if user_permissions['can_edit_controlled'] else ft.colors.RED
+            color=ft.Colors.GREEN if user_permissions['can_edit_controlled'] else ft.Colors.RED
         )
     ], spacing=5)
 
@@ -300,7 +300,7 @@ def alunos(page):
     page.scroll = ft.ScrollMode.AUTO
     page.window_resizable = True
     page.window_maximized = True
-    page.bgcolor = ft.colors.WHITE
+    page.bgcolor = ft.Colors.WHITE
 
     # Variáveis de controle
     alunos_dropdown = ft.Dropdown(
@@ -311,18 +311,18 @@ def alunos(page):
     
     visualizar_btn = ft.ElevatedButton(
         text="Visualizar",
-        icon=ft.icons.VISIBILITY
+        icon=ft.Icons.VISIBILITY
     )
     
     excluir_btn = ft.ElevatedButton(
         text="Excluir Aluno",
-        icon=ft.icons.DELETE,
-        icon_color=ft.colors.RED,
-        color=ft.colors.RED
+        icon=ft.Icons.DELETE,
+        icon_color=ft.Colors.RED,
+        color=ft.Colors.RED
     )
     
-    status_message = ft.Text("", color=ft.colors.GREEN)
-    botao_pag_inical= ft.ElevatedButton(text="Pàgina inicial", icon=ft.icons.HOME, on_click=lambda e: ir_para_pagina(page, pagina_inicial))
+    status_message = ft.Text("", color=ft.Colors.GREEN)
+    botao_pag_inical= ft.ElevatedButton(text="Pàgina inicial", icon=ft.Icons.HOME, on_click=lambda e: ir_para_pagina(page, pagina_inicial))
     
     # Campos para adicionar novo aluno
     nome_completo = ft.TextField(label="Nome Completo", width=400)
@@ -335,7 +335,7 @@ def alunos(page):
     
     adicionar_btn = ft.ElevatedButton(
         text="Salvar Aluno",
-        icon=ft.icons.SAVE
+        icon=ft.Icons.SAVE
     )
     
     # Container para exibir informações do aluno
@@ -358,13 +358,13 @@ def alunos(page):
             page.update()
         except Exception as e:
             status_message.value = f"Erro ao carregar alunos: {e}"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
 
     def visualizar_aluno(e):
         if not alunos_dropdown.value:
             status_message.value = "Selecione um aluno primeiro!"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
             return
         
@@ -381,7 +381,7 @@ def alunos(page):
             
             if not aluno_info:
                 status_message.value = "Aluno não encontrado!"
-                status_message.color = ft.colors.RED
+                status_message.color = ft.Colors.RED
                 page.update()
                 return
             
@@ -406,13 +406,13 @@ def alunos(page):
             
         except Exception as e:
             status_message.value = f"Erro ao visualizar aluno: {e}"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
 
     def excluir_aluno(e):
         if not alunos_dropdown.value:
             status_message.value = "Selecione um aluno primeiro!"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
             return
         
@@ -422,7 +422,7 @@ def alunos(page):
             sheet.delete_rows(cell.row)
             
             status_message.value = f"Aluno {alunos_dropdown.value} excluído com sucesso!"
-            status_message.color = ft.colors.GREEN
+            status_message.color = ft.Colors.GREEN
             
             # Atualiza a lista de alunos
             carregar_alunos()
@@ -432,7 +432,7 @@ def alunos(page):
             
         except Exception as e:
             status_message.value = f"Erro ao excluir aluno: {e}"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
 
     def adicionar_aluno(e):
@@ -440,7 +440,7 @@ def alunos(page):
                    orientador.value, contato_emergencia.value,
                    nome_contato_emergencia.value, parentesco.value]):
             status_message.value = "Preencha todos os campos!"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
             return
         
@@ -461,7 +461,7 @@ def alunos(page):
             sheet.append_row(new_row)
             
             status_message.value = f"Aluno {nome_completo.value} adicionado com sucesso!"
-            status_message.color = ft.colors.GREEN
+            status_message.color = ft.Colors.GREEN
             
             # Limpa os campos e atualiza a lista
             nome_completo.value = ""
@@ -477,7 +477,7 @@ def alunos(page):
             
         except Exception as e:
             status_message.value = f"Erro ao adicionar aluno: {e}"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
 
     # Configurar eventos dos botões
@@ -557,7 +557,7 @@ def professores(page: ft.Page):
     page.scroll = ft.ScrollMode.AUTO
     page.window_resizable = True  # permite redimensionar
     page.window_maximized = True  # opcional: inicia em tela cheia
-    page.bgcolor = ft.colors.WHITE
+    page.bgcolor = ft.Colors.WHITE
     
     def carregar_dados():
         print("\n=== CARREGANDO DADOS ===")
@@ -629,7 +629,7 @@ def professores(page: ft.Page):
             border_radius=10,
             vertical_lines=ft.border.BorderSide(1, "blue"),
             horizontal_lines=ft.border.BorderSide(1, "blue"),
-            heading_row_color=ft.colors.BLUE_100,
+            heading_row_color=ft.Colors.BLUE_100,
         )
 
     def pagina_inicial2(e):
@@ -642,13 +642,13 @@ def professores(page: ft.Page):
                     ft.ElevatedButton(
                         "Ver Registros",
                         on_click=mostrar_registros,
-                        icon=ft.icons.TABLE_CHART,
+                        icon=ft.Icons.TABLE_CHART,
                         width=200
                     ),
                     ft.ElevatedButton(
                         "Página inicial",
                         on_click=lambda e: ir_para_pagina(page, pagina_inicial),
-                        icon=ft.icons.HOME,
+                        icon=ft.Icons.HOME,
                         width=200,
                         
                     )
@@ -669,7 +669,7 @@ def professores(page: ft.Page):
                     ft.Row(
                         [
                             ft.IconButton(
-                                icon=ft.icons.ARROW_BACK,
+                                icon=ft.Icons.ARROW_BACK,
                                 on_click=pagina_inicial2,
                                 tooltip="Voltar"
                             ),
@@ -682,7 +682,7 @@ def professores(page: ft.Page):
                     ft.ElevatedButton(
                         "Voltar",
                         on_click=pagina_inicial2,
-                        icon=ft.icons.HOME,
+                        icon=ft.Icons.HOME,
                         width=200
                     )
                 ],
@@ -702,7 +702,7 @@ def reagentes(page):
     # Criando os botões com ícones
     botao_controlados = ft.ElevatedButton(
         text="Reagentes Controlados",
-        icon=ft.icons.WARNING,
+        icon=ft.Icons.WARNING,
         width=300,
         height=60,
         on_click=lambda e: ir_para_pagina(page, controlado)
@@ -710,7 +710,7 @@ def reagentes(page):
     
     botao_naocontrolados = ft.ElevatedButton(
         text="Reagentes não controlados", 
-        icon=ft.icons.SCIENCE, 
+        icon=ft.Icons.SCIENCE, 
         width=300,
         height=60,
         on_click=lambda e: ir_para_pagina(page, naocontrolado)
@@ -718,7 +718,7 @@ def reagentes(page):
     
     botao_volar_pag_ini = ft.ElevatedButton(
         text="Página Inicial",
-        icon=ft.icons.HOME,
+        icon=ft.Icons.HOME,
         width=300,
         height=60,
         on_click=lambda e: ir_para_pagina(page, pagina_inicial)
@@ -751,7 +751,7 @@ def reagentes(page):
 def almoxarifado(page: ft.Page):
     page.title = "Gestão de Reagentes"
     page.scroll = ft.ScrollMode.AUTO
-    page.bgcolor = ft.colors.WHITE
+    page.bgcolor = ft.Colors.WHITE
     page.window_resizable = True
     page.window_maximized = True
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
@@ -769,7 +769,7 @@ def naocontrolado(page: ft.Page):
     page.window_width = 1000
     page.window_height = 700
     page.scroll = ft.ScrollMode.AUTO
-    page.bgcolor = ft.colors.WHITE
+    page.bgcolor = ft.Colors.WHITE
 
     # Variáveis de estado
     reagente_editando = None
@@ -836,7 +836,7 @@ def naocontrolado(page: ft.Page):
         
         if not resultado_pesquisa.controls:
             resultado_pesquisa.controls.append(
-                ft.Text("Nenhum reagente encontrado", color=ft.colors.RED)
+                ft.Text("Nenhum reagente encontrado", color=ft.Colors.RED)
             )
         
         page.update()
@@ -930,7 +930,7 @@ def naocontrolado(page: ft.Page):
         except Exception as e:
             page.snack_bar = ft.SnackBar(
                 ft.Text(f"Erro crítico: {str(e)}"),
-                bgcolor=ft.colors.RED,
+                bgcolor=ft.Colors.RED,
                 duration=5000
             )
             page.snack_bar.open = True
@@ -968,8 +968,8 @@ def naocontrolado(page: ft.Page):
                 quantidade_gasta_input,
                 ft.Row(
                     [
-                        ft.ElevatedButton("Salvar", on_click=salvar_alteracao, icon=ft.icons.SAVE),
-                        ft.ElevatedButton("Cancelar", on_click=cancelar_edicao, icon=ft.icons.CANCEL, color=ft.colors.RED),
+                        ft.ElevatedButton("Salvar", on_click=salvar_alteracao, icon=ft.Icons.SAVE),
+                        ft.ElevatedButton("Cancelar", on_click=cancelar_edicao, icon=ft.Icons.CANCEL, color=ft.Colors.RED),
                         ft.ElevatedButton(text="Página inicial",on_click=lambda e: ir_para_pagina(page, pagina_inicial))
                     ],
                     spacing=20
@@ -979,7 +979,7 @@ def naocontrolado(page: ft.Page):
         ),
         padding=20,
         margin=10,
-        border=ft.border.all(1, ft.colors.GREY_300),
+        border=ft.border.all(1, ft.Colors.GREY_300),
         border_radius=10
     )
 
@@ -1064,8 +1064,8 @@ def controlado(page: ft.Page):
                     info_widgets["FISPQ"].controls = [
                         ft.Text("FISPQ: "),
                         ft.IconButton(
-                            icon=ft.icons.PICTURE_AS_PDF,
-                            icon_color=ft.colors.BLUE,
+                            icon=ft.Icons.PICTURE_AS_PDF,
+                            icon_color=ft.Colors.BLUE,
                             tooltip="Abrir FISPQ no navegador",
                             on_click=lambda e, url=fispq_url: webbrowser.open(url)
                         )
@@ -1081,7 +1081,7 @@ def controlado(page: ft.Page):
     
     # Layout principal
     conteudo = [
-        ft.Text("Reagentes controlados", size=30, weight="bold", color=ft.colors.BLUE_900),
+        ft.Text("Reagentes controlados", size=30, weight="bold", color=ft.Colors.BLUE_900),
         ft.Container(
             content=reagentes_dropdown,
             padding=10,
@@ -1100,7 +1100,7 @@ def controlado(page: ft.Page):
             ),
             padding=20,
             width=500,
-            border=ft.border.all(1, ft.colors.GREY_300),
+            border=ft.border.all(1, ft.Colors.GREY_300),
             border_radius=10
         )
     ]
@@ -1110,7 +1110,7 @@ def controlado(page: ft.Page):
         conteudo.append(
             ft.ElevatedButton(
                 text="Edição de reagentes controlados", 
-                icon=ft.icons.DANGEROUS, 
+                icon=ft.Icons.DANGEROUS, 
                 tooltip="Somente usuários autorizados",
                 on_click=lambda e: ir_para_pagina(page, edi_controlados)
             )
@@ -1120,7 +1120,7 @@ def controlado(page: ft.Page):
     conteudo.append(
         ft.ElevatedButton(
             text="Página inicial", 
-            icon=ft.icons.HOME, 
+            icon=ft.Icons.HOME, 
             on_click=lambda e: ir_para_pagina(page, pagina_inicial)
         )
     )
@@ -1149,10 +1149,10 @@ client = gspread.authorize(creds)
 def edi_controlados(page: ft.Page):
     # Verificação de segurança - só permite acesso se o usuário tiver permissão
     if not user_permissions['can_edit_controlled']:
-        page.add(ft.Text("❌ Acesso não autorizado", size=24, color=ft.colors.RED))
+        page.add(ft.Text("❌ Acesso não autorizado", size=24, color=ft.Colors.RED))
         page.add(ft.ElevatedButton(
             text="Voltar",
-            icon=ft.icons.ARROW_BACK,
+            icon=ft.Icons.ARROW_BACK,
             on_click=lambda e: ir_para_pagina(page, controlado)
         ))
         return
@@ -1163,7 +1163,7 @@ def edi_controlados(page: ft.Page):
     page.window_width = 900
     page.window_height = 700
     page.scroll = ft.ScrollMode.AUTO
-    page.bgcolor = ft.colors.WHITE
+    page.bgcolor = ft.Colors.WHITE
     page.window_resizable = True
     page.window_maximized = True
 
@@ -1171,11 +1171,11 @@ def edi_controlados(page: ft.Page):
     user_name = ft.TextField(label="Nome do Usuário", width=400)
     reagent_name = ft.Dropdown(label="Selecione o Reagente", width=400, options=[])
     quantity = ft.TextField(label="Quantidade", hint_text="Quantidade em g ou L", width=400)
-    save_button = ft.ElevatedButton(text="Salvar Registro", icon=ft.icons.SAVE)
-    status_message = ft.Text("", color=ft.colors.GREEN)
+    save_button = ft.ElevatedButton(text="Salvar Registro", icon=ft.Icons.SAVE)
+    status_message = ft.Text("", color=ft.Colors.GREEN)
     new_reagent = ft.TextField(label="Novo Reagente", hint_text="Digite o nome do novo reagente", width=400)
-    add_reagent_button = ft.ElevatedButton(text="Adicionar Reagente",icon=ft.icons.ADD)
-    delete_reagent_button = ft.ElevatedButton(text="Excluir Reagente Selecionado", color=ft.colors.RED, icon=ft.icons.DELETE)
+    add_reagent_button = ft.ElevatedButton(text="Adicionar Reagente",icon=ft.Icons.ADD)
+    delete_reagent_button = ft.ElevatedButton(text="Excluir Reagente Selecionado", color=ft.Colors.RED, icon=ft.Icons.DELETE)
 
     def load_reagents():
         try:
@@ -1187,7 +1187,7 @@ def edi_controlados(page: ft.Page):
                 page.update()
         except Exception as e:
             status_message.value = f"Erro ao carregar reagentes: {e}"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
 
     def clear_existing_sums(sheet):
@@ -1274,13 +1274,13 @@ def edi_controlados(page: ft.Page):
         except Exception as e:
             print(f"Erro em add_monthly_sums: {e}")
             status_message.value = f"Erro ao calcular totais: {str(e)}"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
 
     def save_data(e):
         if not all([user_name.value, reagent_name.value, quantity.value]):
             status_message.value = "Preencha todos os campos!"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
             return
 
@@ -1302,7 +1302,7 @@ def edi_controlados(page: ft.Page):
                 new_row[reagent_col] = float(quantity.value)
             except ValueError:
                 status_message.value = "Reagente não encontrado na planilha. Recarregue a lista."
-                status_message.color = ft.colors.RED
+                status_message.color = ft.Colors.RED
                 page.update()
                 return
 
@@ -1331,20 +1331,20 @@ def edi_controlados(page: ft.Page):
             add_monthly_sums(sheet_modificar)
 
             status_message.value = "Registro salvo e estoque atualizado com sucesso!"
-            status_message.color = ft.colors.GREEN
+            status_message.color = ft.Colors.GREEN
             quantity.value = ""
             page.update()
 
         except Exception as e:
             status_message.value = f"Erro ao salvar registro: {e}"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
 
 
     def add_reagent(e):
         if not new_reagent.value:
             status_message.value = "Digite o nome do novo reagente!"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
             return
 
@@ -1353,27 +1353,27 @@ def edi_controlados(page: ft.Page):
             headers = sheet.row_values(1)
             if new_reagent.value in headers:
                 status_message.value = "Este reagente já existe!"
-                status_message.color = ft.colors.RED
+                status_message.color = ft.Colors.RED
                 page.update()
                 return
 
             sheet.add_cols(1)
             sheet.update_cell(1, len(headers)+1, new_reagent.value)
             status_message.value = f"Reagente '{new_reagent.value}' adicionado com sucesso!"
-            status_message.color = ft.colors.GREEN
+            status_message.color = ft.Colors.GREEN
             new_reagent.value = ""
             load_reagents()
             page.update()
 
         except Exception as e:
             status_message.value = f"Erro ao adicionar reagente: {e}"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
 
     def delete_reagent(e):
         if not reagent_name.value:
             status_message.value = "Selecione um reagente para excluir!"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
             return
 
@@ -1384,19 +1384,19 @@ def edi_controlados(page: ft.Page):
                 col_index = headers.index(reagent_name.value) + 1
             except ValueError:
                 status_message.value = "Reagente não encontrado na planilha."
-                status_message.color = ft.colors.RED
+                status_message.color = ft.Colors.RED
                 page.update()
                 return
 
             sheet.delete_columns(col_index)
             status_message.value = f"Reagente '{reagent_name.value}' removido com sucesso!"
-            status_message.color = ft.colors.GREEN
+            status_message.color = ft.Colors.GREEN
             load_reagents()
             page.update()
 
         except Exception as e:
             status_message.value = f"Erro ao remover reagente: {e}"
-            status_message.color = ft.colors.RED
+            status_message.color = ft.Colors.RED
             page.update()
 
     def update_monthly_spending(sheet, date_str):
@@ -1457,7 +1457,7 @@ def edi_controlados(page: ft.Page):
                 ),
                 ft.Divider(),
                 status_message,
-                ft.ElevatedButton(text="Página inicial", icon=ft.icons.HOME,on_click=lambda e: ir_para_pagina(page, pagina_inicial),)
+                ft.ElevatedButton(text="Página inicial", icon=ft.Icons.HOME,on_click=lambda e: ir_para_pagina(page, pagina_inicial),)
             ],
             spacing=20,
             width=600,
@@ -1471,26 +1471,26 @@ def material(page):
     page.title = "Material"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-    page.bgcolor = ft.colors.WHITE
+    page.bgcolor = ft.Colors.WHITE
     
     # Botões
     btn_nao_controlados = ft.ElevatedButton(
         text="Reagentes não controlados",
-        icon=ft.icons.SCIENCE,
+        icon=ft.Icons.SCIENCE,
         on_click=lambda e: ir_para_pagina(page, naocontrolado),
         width=250
     )
     
     btn_controlados = ft.ElevatedButton(
         text="Reagentes controlados",
-        icon=ft.icons.WARNING,
+        icon=ft.Icons.WARNING,
         on_click=lambda e: ir_para_pagina(page, controlado),
         width=250
     )
     
     btn_voltar = ft.ElevatedButton(
         text="Página inicial",
-        icon=ft.icons.HOME,
+        icon=ft.Icons.HOME,
         on_click=lambda e: ir_para_pagina(page, pagina_inicial),
         width=250
     )
