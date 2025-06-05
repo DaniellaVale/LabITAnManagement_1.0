@@ -1,0 +1,20 @@
+
+# Arquivos Python compilados
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Configurações locais e temporários
+.env
+.vscode/
+*.log
+.DS_Store
+
+# Arquivos de credenciais
+*.json
+!logo.tif
+
+# Arquivos específicos do sistema operacional
+Thumbs.db
+ehthumbs.db
+Icon?
