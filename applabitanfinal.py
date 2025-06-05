@@ -9,6 +9,7 @@ import webbrowser
 import pandas as pd
 import sys
 import time
+import json
 
 '''Função para alterar entre as páginas'''
 def ir_para_pagina(page, funcao_pagina):
@@ -34,8 +35,10 @@ WORKSHEET_NAME = "Sheet1"  # Ou o nome da aba que você usa
 
 # Credenciais JSON diretamente no código (substitua pelo seu JSON real)
 # Substitua pelo caminho do seu arquivo JSON (ex.: "credenciais.json")
-CAMINHO_CREDENCIAIS = "api-reagentes-190d7c597b5c.json"
 
+with open("/etc/secrets/credentials.json") as f:
+    creds_json = json.load(f)
+    
 '''página de login'''
 # Configuração inicial de logging
 print("\n=== INICIALIZANDO SISTEMA ===")
@@ -63,8 +66,8 @@ scope = [
 # Autenticação com tratamento de erros
 try:
     print("\n🔑 Autenticando com Google Sheets...")
-    creds = ServiceAccountCredentials.from_json_keyfile_name(CAMINHO_CREDENCIAIS, scope)
-    client = gspread.authorize(creds)
+    credenciais = ServiceAccountCredentials.from_json_keyfile_dict(creds_json, scope)
+    client = gspread.authorize(credenciais)
     print("✅ Autenticação bem-sucedida")
 except Exception as auth_error:
     print(f"❌ Falha na autenticação: {auth_error}")
