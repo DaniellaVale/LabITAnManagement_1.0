@@ -1517,3 +1517,4 @@ def main(page: ft.Page):
 
 # Executa o aplicativo
 ft.app(target=main)
+
