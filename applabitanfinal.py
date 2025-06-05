@@ -544,7 +544,7 @@ if not SHEET_ID_PROFESSORES:
 
 print("\n=== AUTENTICAÇÃO ===")
 try:
-    creds = ServiceAccountCredentials.from_json_keyfile_name(CAMINHO_CREDENCIAIS, scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name(creds_json, scope)
     client = gspread.authorize(creds)
     print("✅ Autenticação com Google Sheets bem-sucedida")
 except Exception as auth_error:
@@ -764,7 +764,7 @@ def almoxarifado(page: ft.Page):
 '''Reagentes não controlados'''
 # Autenticação
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name(CAMINHO_CREDENCIAIS, scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name(creds_json, scope)
 client = gspread.authorize(creds)
 
 def naocontrolado(page: ft.Page):
@@ -1018,7 +1018,7 @@ if __name__ == "__naocontrolado__":
 '''Página de visualização de reagentes controlados'''
 # Conectar à planilha do Google Sheets
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name(CAMINHO_CREDENCIAIS, scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name(creds_json, scope)
 cliente = gspread.authorize(creds)
 planilha = cliente.open_by_key(SHEET_ID_CONT).sheet1
 
@@ -1146,7 +1146,7 @@ scope = [
 ]
 
 # Autenticando com a conta de serviço
-creds = ServiceAccountCredentials.from_json_keyfile_name(CAMINHO_CREDENCIAIS, scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name(creds_json, scope)
 client = gspread.authorize(creds)
 
 def edi_controlados(page: ft.Page):
